@@ -2,8 +2,7 @@
 
 import { useSidebar } from "@/store/use-sidebar";
 import { User } from "@prisma/client";
-import Image from "next/image";
-import { UserItem, UserItemSkeleton } from "./UserItem";
+import { UserItem, UserItemSkeleton } from "./user-item";
 
 type RecommenededProps = {
   data: User[];
