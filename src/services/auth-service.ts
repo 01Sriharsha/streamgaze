@@ -8,7 +8,7 @@ export const getSelf = async () => {
     throw new Error("Unauthorized");
   }
 
-  const user = db.user.findUnique({ where: { externalUserId: self.id } });
+  const user = await db.user.findUnique({ where: { externalUserId: self.id } });
 
   if (!user) {
     throw new Error("User not found");
