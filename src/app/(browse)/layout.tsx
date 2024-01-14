@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { Navbar } from "./_components/navbar";
-import { Sidebar } from "./_components/sidebar";
+import { Sidebar, SidebarSkeleton } from "./_components/sidebar";
 import { Conatiner } from "./_components/sidebar/container";
 
 export default function BrowseLayout({ children }: { children: ReactNode }) {
@@ -8,7 +8,9 @@ export default function BrowseLayout({ children }: { children: ReactNode }) {
     <>
       <Navbar />
       <div className="flex h-full pt-20">
-        <Sidebar />
+        <Suspense fallback={<SidebarSkeleton />}>
+          <Sidebar />
+        </Suspense>
         <Conatiner>{children}</Conatiner>
       </div>
     </>

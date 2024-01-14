@@ -3,7 +3,7 @@
 import { useSidebar } from "@/store/use-sidebar";
 import { User } from "@prisma/client";
 import Image from "next/image";
-import { UserItem } from "./UserItem";
+import { UserItem, UserItemSkeleton } from "./UserItem";
 
 type RecommenededProps = {
   data: User[];
@@ -16,7 +16,7 @@ export const Recommeneded = ({ data: users }: RecommenededProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="text-muted-foreground text-sm">
+      <p className="text-muted-foreground text-sm px-3">
         {showLabel && <span>Recommended</span>}
       </p>
 
@@ -31,5 +31,15 @@ export const Recommeneded = ({ data: users }: RecommenededProps) => {
         ))}
       </ul>
     </div>
+  );
+};
+
+export const RecommendedSkeleton = () => {
+  return (
+    <ul>
+      {[...Array(3)].map((_, i) => (
+        <UserItemSkeleton key={i} />
+      ))}
+    </ul>
   );
 };

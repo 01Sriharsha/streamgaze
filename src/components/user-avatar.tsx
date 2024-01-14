@@ -1,6 +1,8 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
+import { LiveBadge } from "./live-badge";
+import { Skeleton } from "./ui/skeleton";
 
 const avatarSizes = cva("", {
   variants: {
@@ -14,7 +16,8 @@ const avatarSizes = cva("", {
   },
 });
 
-interface UserAvatarProps extends VariantProps<typeof avatarSizes> {
+type AvatarSizes = VariantProps<typeof avatarSizes>;
+interface UserAvatarProps extends AvatarSizes {
   imageUrl: string;
   username: string;
   isLive?: boolean;
@@ -44,6 +47,16 @@ export const UserAvatar = ({
             username[username.length - 1].toUpperCase()}
         </AvatarFallback>
       </Avatar>
+      {showBadge && (
+        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+          <LiveBadge />
+        </div>
+      )}
     </div>
   );
+};
+
+//skeleton
+export const UserAvatarSkeleton = ({ size }: AvatarSizes) => {
+  return <Skeleton className={cn("rounded-full", avatarSizes({ size }))} />;
 };
