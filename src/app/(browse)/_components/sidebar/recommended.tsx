@@ -19,7 +19,7 @@ export const Recommeneded = ({ data: users }: RecommenededProps) => {
         {showLabel && <span>Recommended</span>}
       </p>
 
-      <ul className="list-disc">
+      <ul>
         {users.map((user) => (
           <UserItem
             key={user.id}
