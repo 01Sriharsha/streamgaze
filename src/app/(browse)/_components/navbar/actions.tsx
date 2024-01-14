@@ -15,7 +15,7 @@ export const Actions = async () => {
       ) : (
         <div className="flex justify-between gap-8 items-center">
           <Link
-            href={`/u/${user.username}`}
+            href={`/${user.username}`}
             className="flex items-center gap-1 text-sm text-neutral-300"
           >
             <Clapperboard size={'1.1rem'} />
