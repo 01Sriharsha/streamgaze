@@ -15,7 +15,7 @@ export const Actions = async () => {
       ) : (
         <div className="flex justify-between gap-8 items-center">
           <Link
-            href={`/${user.username}`}
+            href={`/u/${user.username}`} //this for creator dashboard
             className="flex items-center gap-1 text-sm text-neutral-300"
           >
             <Clapperboard size={'1.1rem'} />
