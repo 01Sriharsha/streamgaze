@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex", "fullTextSearch"]
 }
 
 datasource db {
@@ -23,6 +24,7 @@ model User {
   followedBy     Follow[] @relation("FollowedBy")
   Blocker        Block[]  @relation("Blocker")
   Blocked        Block[]  @relation("Blocked")
+  Stream         Stream?  @relation("user")
 }
 
 model Follow {
@@ -52,4 +54,31 @@ model Block {
   @@unique([blockerId, blockedId])
   @@index([blockedId])
   @@index([blockerId])
+}
+
+model Stream {
+  id           String   @id @default(uuid())
+  name         String   @db.Text
+  thumbnailUrl String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  //to connect with streaming software
+  ingressId String? @unique
+  serverUrl String? @db.Text
+  streamKey String? @db.Text
+
+  //to control stream chat features
+  isLive              Boolean @default(false)
+  isChatEnabled       Boolean @default(true) //to disable or enable chat
+  isChatDelay         Boolean @default(false) //to delay the chat speed
+  isChatFollowersOnly Boolean @default(false) //to enable chat for followers only
+
+  //relation
+  userId String @unique
+  user   User   @relation(name: "user", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([ingressId])
+  @@fulltext([name])
 }
