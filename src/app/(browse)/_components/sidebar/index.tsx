@@ -1,4 +1,3 @@
-import React from "react";
 import { Wrapper } from "./wrapper";
 import { Toggle, ToggleSkeleton } from "./toggle";
 import { RecommendedSkeleton, Recommeneded } from "./recommended";
