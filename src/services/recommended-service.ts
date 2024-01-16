@@ -1,6 +1,6 @@
 import { db } from "@/lib/prisma";
 import { getSelf } from "./auth-service";
-import { User } from "@prisma/client";
+import { Stream, User } from "@prisma/client";
 
 export const getRecommended = async () => {
   // await new Promise(resolve => setTimeout(resolve , 5000));
@@ -14,7 +14,7 @@ export const getRecommended = async () => {
     userId = null;
   }
 
-  let users: User[] = [];
+  let users = [];
 
   if (userId) {
     //exclude the current logged in user
@@ -46,12 +46,26 @@ export const getRecommended = async () => {
           },
         ],
       },
+      include: {
+        Stream: {
+          select: {
+            isLive: true,
+          },
+        },
+      },
       orderBy: {
         createdAt: "desc",
       },
     });
   } else {
     users = await db.user.findMany({
+      include: {
+        Stream: {
+          select: {
+            isLive: true,
+          },
+        },
+      },
       orderBy: {
         createdAt: "desc",
       },
