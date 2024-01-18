@@ -2,12 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
-import { Hint } from "./hint";
+import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCreatorSidebar } from "@/store/use-creator-sidebar";
 
 export const Toggle = () => {
-  const { collapsed, onCollapse, onExpand } = useCreatorSidebar((state) => state);
+  const { collapsed, onCollapse, onExpand } = useCreatorSidebar(
+    (state) => state
+  );
 
   const label = collapsed ? "Expand" : "Collapse";
 
