@@ -9,6 +9,7 @@ import {
   useRemoteParticipant,
 } from "@livekit/components-react";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
+import { ChatHeader } from "./chat-header";
 
 type ChatProps = {
   viwerName: string;
@@ -29,7 +30,7 @@ export const Chat = ({
   isChatFollowersOnly,
 }: ChatProps) => {
   const matches = useMediaQuery("(max-width:1024px)");
-  
+
   const connectionState = useConnectionState();
   const participant = useRemoteParticipant(hostIdentity);
 
@@ -40,7 +41,6 @@ export const Chat = ({
 
   const isOnline = participant && connectionState === ConnectionState.Connected;
   const isHidden = !isChatEnabled || !isOnline;
-
 
   useEffect(() => {
     if (matches) {
@@ -60,5 +60,9 @@ export const Chat = ({
     setValue("");
   };
 
-  return <div>Chat</div>;
+  return (
+    <div className="flex flex-col bg-background border-b pt-0 h-[calc(100vh-80px)]">
+      <ChatHeader />
+    </div>
+  );
 };
