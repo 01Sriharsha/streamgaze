@@ -1,13 +1,14 @@
 "use server";
 
+import { v4 } from "uuid";
+import { AccessToken } from "livekit-server-sdk";
 import { getSelf } from "@/services/auth-service";
 import { isBlockedUser } from "@/services/block-service";
 import { getUserById } from "@/services/user-service";
-import { AccessToken } from "livekit-server-sdk";
-import { v4 } from "uuid";
+import { User } from "@prisma/client";
 
 export const createViewerToken = async (hostIdentity: string) => {
-  let self;
+  let self: Partial<User> | { id: string; username: string };
 
   try {
     self = await getSelf();
