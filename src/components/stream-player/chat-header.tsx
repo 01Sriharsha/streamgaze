@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChatToggle } from "./chat-toggle";
+import { VariantToggle } from "./variant-toggle";
 
 type ChatHeaderProps = {};
 
@@ -10,6 +11,9 @@ export const ChatHeader = ({}: ChatHeaderProps) => {
         <ChatToggle />
       </div>
       <p className="font-semibold text-center text-primary">Stream Chat</p>
+      <div className="absolute right-2 top-2">
+        <VariantToggle />
+      </div>
     </div>
   );
 };
