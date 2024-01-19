@@ -10,7 +10,7 @@ import {
 } from "@livekit/components-react";
 import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
 import { ChatHeader } from "./chat-header";
-import { ChatForm } from "./chat-from";
+import { ChatForm } from "./chat-form";
 import { ChatList } from "./chat-list";
 
 type ChatProps = {
