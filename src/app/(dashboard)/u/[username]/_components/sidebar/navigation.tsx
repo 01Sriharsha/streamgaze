@@ -12,7 +12,7 @@ export const Navigation = () => {
   const routes = [
     {
       label: "Stream",
-      href: `/u/${user?.username}/stream`,
+      href: `/u/${user?.username}`,
       icon: Fullscreen,
     },
     {
@@ -27,14 +27,14 @@ export const Navigation = () => {
     },
     {
       label: "Community",
-      href: `/u/${user?.username}`,
+      href: `/u/${user?.username}/community`,
       icon: Users,
     },
   ];
 
-//   if (!user?.username) {
-//     return <NavigationSkeleton />;
-//   }
+  if (!user?.username) {
+    return <NavigationSkeleton />;
+  }
   return (
     <ul className="space-y-2">
       {routes.map((route) => (

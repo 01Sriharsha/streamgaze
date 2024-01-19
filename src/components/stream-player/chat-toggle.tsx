@@ -1,17 +1,17 @@
+import { ArrowRightFromLine, MessageSquareText } from "lucide-react";
 import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
-import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
 
 type ChatToggleProps = {};
 
 export const ChatToggle = ({}: ChatToggleProps) => {
   const { collapsed, onExpand, onCollapse } = useChatSidebar((state) => state);
 
-  let Icon = collapsed ? ArrowLeftFromLine : ArrowRightFromLine;
+  let Icon = collapsed ? MessageSquareText : ArrowRightFromLine;
 
-  const label = collapsed ? "Expand" : "Collapse";
+  const label = collapsed ? "View Chat" : "Collapse";
 
   const onToggle = () => (collapsed ? onExpand() : onCollapse());
 
