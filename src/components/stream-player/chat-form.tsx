@@ -8,7 +8,7 @@ import { ChatInfo } from "./chat-info";
 type ChatFormProps = {
   onSubmit: () => void;
   value: string;
-  onChange: any;
+  onChange: (str: string) => void;
   isHidden: boolean;
   isFollowersOnly: boolean;
   isFollowing: boolean;
@@ -53,7 +53,7 @@ export const ChatForm = ({
   }
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       className="flex flex-col items-center gap-y-4 p-3"
     >
       <ChatInfo isDelayed={isChatDelay} isFollowersOnly={isFollowersOnly} />
