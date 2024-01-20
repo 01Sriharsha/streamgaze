@@ -9,9 +9,10 @@ import {
   useRemoteParticipant,
 } from "@livekit/components-react";
 import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
-import { ChatHeader } from "./chat-header";
-import { ChatForm } from "./chat-form";
-import { ChatList } from "./chat-list";
+import { ChatHeader, ChatHeaderSkeleton } from "./chat-header";
+import { ChatForm, ChatFormSkeleton } from "./chat-form";
+import { ChatList, ChatListSkeleton } from "./chat-list";
+import { ChatCommunity } from "./chat-community";
 
 type ChatProps = {
   viewerName: string;
@@ -55,9 +56,12 @@ export const Chat = ({
     return messages.sort((a, b) => b.timestamp - a.timestamp);
   }, [messages]);
 
+  const handleChange = (str: string) => {
+    setValue(str);
+  };
+
   const onSubmit = () => {
     if (!send) return;
-
     send(value);
     setValue("");
   };
@@ -65,13 +69,13 @@ export const Chat = ({
   return (
     <div className="flex flex-col bg-background border-b pt-0 h-[calc(100vh-80px)]">
       <ChatHeader />
-      <ChatList messages={reveresedMessages} isHidden={isHidden} />
       {variant === ChatVariant.CHAT && (
         <>
+          <ChatList messages={reveresedMessages} isHidden={isHidden} />
           <ChatForm
             onSubmit={onSubmit}
             value={value}
-            onChange={() => {}}
+            onChange={handleChange}
             isHidden={isHidden}
             isFollowersOnly={isChatFollowersOnly}
             isFollowing={isFollowing}
@@ -81,9 +85,23 @@ export const Chat = ({
       )}
       {variant === ChatVariant.COMMUNITY && (
         <>
-          <p>COMMUNITY Mode</p>
+          <ChatCommunity
+            viewerName={viewerName}
+            hostName={hostname}
+            isHidden={isHidden}
+          />
         </>
       )}
+    </div>
+  );
+};
+
+export const ChatSkeleton = () => {
+  return (
+    <div className="flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2">
+      <ChatHeaderSkeleton />
+      <ChatListSkeleton />
+      <ChatFormSkeleton />
     </div>
   );
 };
