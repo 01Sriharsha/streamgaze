@@ -1,13 +1,14 @@
 "use client";
 
-import { onFollow, onUnFollow } from "@/actions/follow-action";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
-import { Heart } from "lucide-react";
-import { redirect } from "next/navigation";
 import { useTransition } from "react";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { onFollow, onUnFollow } from "@/actions/follow-action";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type ActionsProps = {
   isFollowing: boolean;
@@ -56,4 +57,8 @@ export const Actions = ({
       {isFollowing ? "Unfollow" : "Follow"}
     </Button>
   );
+};
+
+export const ActionsSkeleton = () => {
+  return <Skeleton className="h-10 w-full lg:w-24" />;
 };

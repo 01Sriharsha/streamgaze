@@ -3,9 +3,10 @@ import {
   useParticipants,
   useRemoteParticipant,
 } from "@livekit/components-react";
-import { UserAvatar } from "@/components/user-avatar";
+import { UserAvatar, UserAvatarSkeleton } from "@/components/user-avatar";
 import { VerifiedMark } from "@/components/verified-mark";
-import { Actions } from "./actions";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Actions, ActionsSkeleton } from "./actions";
 
 type HeaderProps = {
   hostIdentity: string;
@@ -68,6 +69,21 @@ export const Header = ({
         isHost={isHost}
         hostIdentity={hostIdentity}
       />
+    </div>
+  );
+};
+
+export const HeaderSkeleton = () => {
+  return (
+    <div className="flex flex-col lg:flex-row lg:gap-y-0 gap-y-4 items-center justify-between px-4">
+      <div className="flex items-center gap-x-3">
+        <UserAvatarSkeleton size={"lg"} />
+        <div className="space-y-2">
+          <Skeleton className="h-6 w-32" />
+          <Skeleton className="h-4 w-24" />
+        </div>
+      </div>
+      <ActionsSkeleton />
     </div>
   );
 };
