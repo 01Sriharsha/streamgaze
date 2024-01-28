@@ -8,7 +8,10 @@ import {
   useState,
   useTransition,
 } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
 import {
   Dialog,
   DialogTrigger,
@@ -20,7 +23,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { updateStream } from "@/actions/stream-action";
+import { UploadDropzone } from "@/lib/uploadthing";
+
+import { removeThumbnail, updateStream } from "@/actions/stream-action";
+import { Hint } from "../hint";
 
 type InfoModalProps = {
   initialName: string;
@@ -31,9 +37,11 @@ export const InfoModal = ({
   initialName,
   initalThumbnailurl,
 }: InfoModalProps) => {
+  const router = useRouter();
   const closeRef = useRef<ElementRef<"button">>(null);
 
   const [name, setName] = useState(initialName);
+  const [thumbnailurl, setThumbnailurl] = useState(initalThumbnailurl);
 
   const [isPending, startTransition] = useTransition();
 
@@ -49,6 +57,17 @@ export const InfoModal = ({
         .then(() => {
           toast.success("Stream updated!");
           closeRef.current?.click();
+        })
+        .catch(() => toast.error("Something went wrong!"));
+    });
+  };
+
+  const handleRemoveThumbnail = () => {
+    startTransition(() => {
+      removeThumbnail()
+        .then(() => {
+          toast.success("Thumbnail removed!");
+          setThumbnailurl("");
         })
         .catch(() => toast.error("Something went wrong!"));
     });
@@ -74,6 +93,49 @@ export const InfoModal = ({
               disabled={isPending}
               onChange={onChange}
             />
+          </div>
+          <div className="space-y-2">
+            <Label>Thumbnail</Label>
+            {thumbnailurl ? (
+              <div className="relative rounded-xl border outline-dashed outline-muted p-1">
+                <Image
+                  src={thumbnailurl}
+                  alt={name}
+                  width={200}
+                  height={300}
+                  className="object-cover mx-auto rounded-md overflow-hidden"
+                />
+                <Button
+                  size={"sm"}
+                  disabled={isPending}
+                  className="absolute top-0 right-0"
+                  onClick={handleRemoveThumbnail}
+                >
+                  <Hint label="Remove Thumbnail" side="left">
+                    <Trash2 className="h-5 w-5" />
+                  </Hint>
+                </Button>
+              </div>
+            ) : (
+              <div className="rounded-xl border outline-dashed outline-muted">
+                <UploadDropzone
+                  endpoint="thumbnailUploader"
+                  appearance={{
+                    label: {
+                      color: "#FFFFFF",
+                    },
+                    allowedContent: {
+                      color: "#FFFFFF",
+                    },
+                  }}
+                  onClientUploadComplete={(res) => {
+                    setThumbnailurl(res?.[0]?.url);
+                    closeRef.current?.click();
+                    router.refresh();
+                  }}
+                />
+              </div>
+            )}
           </div>
           <div className="flex justify-between">
             <DialogClose>

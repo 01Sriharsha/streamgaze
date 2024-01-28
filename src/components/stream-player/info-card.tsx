@@ -39,7 +39,7 @@ export const InfoCard = ({
               Maximize your visibility
             </p>
           </>
-          <InfoModal 
+          <InfoModal
             initialName={streamName}
             initalThumbnailurl={thumbnailUrl}
           />
@@ -52,14 +52,14 @@ export const InfoCard = ({
         <div className="p-4 lg:p-6 space-y-4">
           <h3 className="text-sm text-muted-foreground mb-2">Thumbnail</h3>
           {thumbnailUrl && (
-            <div className="relative aspect-video rounded-md overflow-hidden w-[200px] border border-white/10">
-              <Image
-                src={thumbnailUrl}
-                alt={streamName}
-                width={200}
-                height={200}
-              />
-            </div>
+            <Image
+              src={thumbnailUrl}
+              alt={streamName}
+              width={200}
+              height={300}
+              quality={50}
+              className="object-cover w-[200px] rounded-md overflow-hidden"
+            />
           )}
         </div>
       </div>
