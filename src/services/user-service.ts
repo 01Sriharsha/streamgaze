@@ -5,9 +5,14 @@ export const getUserByUsername = async (username: string) => {
     where: {
       username,
     },
-    include : {
-      Stream : true
-    }
+    include: {
+      Stream: true,
+      _count: {
+        select: {
+          followedBy: true,
+        },
+      },
+    },
   });
   return user;
 };
@@ -17,9 +22,9 @@ export const getUserById = async (id: string) => {
     where: {
       id,
     },
-    include : {
-      Stream : true
-    }
+    include: {
+      Stream: true,
+    },
   });
   return user;
 };
