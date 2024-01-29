@@ -25,8 +25,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UploadDropzone } from "@/lib/uploadthing";
 
-import { removeThumbnail, updateStream } from "@/actions/stream-action";
-import { Hint } from "../hint";
+import { Hint } from "@/components/hint";
+import { updateStream } from "@/actions/stream-action";
 
 type InfoModalProps = {
   initialName: string;
@@ -41,7 +41,7 @@ export const InfoModal = ({
   const closeRef = useRef<ElementRef<"button">>(null);
 
   const [name, setName] = useState(initialName);
-  const [thumbnailurl, setThumbnailurl] = useState(initalThumbnailurl);
+  const [thumbnailUrl, setThumbnailurl] = useState(initalThumbnailurl);
 
   const [isPending, startTransition] = useTransition();
 
@@ -64,10 +64,11 @@ export const InfoModal = ({
 
   const handleRemoveThumbnail = () => {
     startTransition(() => {
-      removeThumbnail()
+      updateStream({ thumbnailUrl: null })
         .then(() => {
           toast.success("Thumbnail removed!");
-          setThumbnailurl("");
+          setThumbnailurl('');
+          closeRef.current?.click();
         })
         .catch(() => toast.error("Something went wrong!"));
     });
@@ -96,10 +97,10 @@ export const InfoModal = ({
           </div>
           <div className="space-y-2">
             <Label>Thumbnail</Label>
-            {thumbnailurl ? (
+            {thumbnailUrl ? (
               <div className="relative rounded-xl border outline-dashed outline-muted p-1">
                 <Image
-                  src={thumbnailurl}
+                  src={thumbnailUrl}
                   alt={name}
                   width={200}
                   height={300}

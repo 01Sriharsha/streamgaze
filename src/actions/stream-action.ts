@@ -17,8 +17,9 @@ export const updateStream = async (values: Partial<Stream>) => {
       throw new Error("cannot modify other's stream");
     }
 
-    const validData = {
+    const validData: Partial<Stream> = {
       name: values.name,
+      thumbnailUrl: values.thumbnailUrl,
       isChatEnabled: values.isChatEnabled,
       isChatDelay: values.isChatDelay,
       isChatFollowersOnly: values.isChatFollowersOnly,
