@@ -5,14 +5,16 @@ import { useViewerToken } from "@/hooks/use-viwer-token";
 import { LiveKitRoom } from "@livekit/components-react";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { cn } from "@/lib/utils";
+
 import { Video, VideoSkeleton } from "./video";
 import { Chat, ChatSkeleton } from "./chat";
 import { ChatToggle } from "./chat-toggle";
 import { Header, HeaderSkeleton } from "./header";
+import { AboutCard } from "./about-card";
 import { InfoCard } from "./info-card";
 
 type StreamPlayerProps = {
-  user: User;
+  user: User & { _count: { followedBy: number } };
   stream: Stream;
   isFollowing?: boolean;
 };
@@ -59,6 +61,13 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             streamName={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
