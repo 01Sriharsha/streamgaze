@@ -2,7 +2,6 @@
 
 import { useTransition } from "react";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -26,11 +25,14 @@ export const Actions = ({
   const [isPending, startTransititon] = useTransition();
 
   const handleFollow = () => {
-    if (!userId) redirect("/");
+    if (!userId) {
+      toast.info("Login to follow!");
+      return;
+    }
 
-    if (!isHost) return;
+    if (isHost) return;
 
-    if (isFollowing) {
+    if (!isFollowing) {
       startTransititon(() => {
         onFollow(hostIdentity)
           .then(() => toast.success("Followed!"))
