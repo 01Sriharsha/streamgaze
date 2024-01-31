@@ -49,7 +49,7 @@ export const ChatCommunity = ({
     );
   }
   return (
-    <div>
+    <div className="px-4">
       <Input
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search community"
