@@ -1,8 +1,7 @@
-import React from "react";
-import { Poppins } from "next/font/google";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { Poppins } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -26,7 +25,7 @@ export const Logo = () => {
           width={30}
           className="object-cover bg-white rounded-full my-4"
         />
-        <p className="hidden md:block">Twitch</p>
+        <p className="hidden md:block">Streamgaze</p>
       </div>
     </Link>
   );
