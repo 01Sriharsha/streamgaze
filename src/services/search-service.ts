@@ -35,6 +35,7 @@ export const getSearch = async (term: string) => {
         id: true,
         isLive: true,
         thumbnailUrl: true,
+        updatedAt : true
       },
       orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
     });
@@ -70,6 +71,7 @@ export const getSearch = async (term: string) => {
         id: true,
         isLive: true,
         thumbnailUrl: true,
+        updatedAt : true
       },
       orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
     });
