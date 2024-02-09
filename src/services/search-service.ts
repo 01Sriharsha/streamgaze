@@ -35,7 +35,7 @@ export const getSearch = async (term: string) => {
         id: true,
         isLive: true,
         thumbnailUrl: true,
-        updatedAt : true
+        updatedAt: true,
       },
       orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
     });
@@ -46,7 +46,7 @@ export const getSearch = async (term: string) => {
           NOT: {
             Blocked: {
               some: {
-                blockedId: userId,
+                blockerId: userId,
               },
             },
           },
@@ -71,7 +71,7 @@ export const getSearch = async (term: string) => {
         id: true,
         isLive: true,
         thumbnailUrl: true,
-        updatedAt : true
+        updatedAt: true,
       },
       orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
     });
