@@ -1,7 +1,3 @@
----
-title: StreamGaze
----
-
 # StreamGaze
 
 StreamGaze is a dynamic live streaming platform with interactive chat, designed to elevate your viewing experience. Whether you're into gaming, music, sports, or other live events, StreamGaze offers seamless streaming and real-time engagement.
@@ -37,7 +33,7 @@ To get started with StreamGaze, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/01Sriharsha/streamgaze.git
 
 npm run dev
 # or
