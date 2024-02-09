@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+---
+title: StreamGaze
+---
+
+# StreamGaze
+
+StreamGaze is a dynamic live streaming platform with interactive chat, designed to elevate your viewing experience. Whether you're into gaming, music, sports, or other live events, StreamGaze offers seamless streaming and real-time engagement.
+
+## Key Features
+
+- **High-Quality Live Streaming**: Immerse yourself in high-definition live streams across various genres, ensuring an unparalleled viewing experience.
+
+- **Interactive Chat**: Engage in lively conversations with fellow viewers, share reactions, and connect with creators in real-time, fostering a sense of community.
+
+- **Personalized Recommendations**: Discover new and exciting content tailored to your interests, thanks to our intelligent recommendation system, enhancing your streaming journey.
+
+- **Cross-Platform Accessibility**: Access StreamGaze from any device, including smartphones, tablets, and desktop computers, ensuring flexibility and convenience.
+
+- **Customizable Profiles**: Tailor your profile to your preferences, follow your favorite creators, and stay updated on their latest streams and updates, enhancing user engagement and interaction.
+
+## Technologies Used
+
+- **Next.js 14**: Empowering high-performance React applications with server-side rendering and other powerful features.
+- **React.js**: Building interactive user interfaces with ease and efficiency.
+- **Prisma**: Modern database toolkit for TypeScript and Node.js, simplifying database access and management.
+- **MySQL**: Reliable and scalable relational database management system.
+- **Livekit**: A flexible and powerful platform for building real-time audio and video applications.
+- **UploadThing**: Simplifying file uploads with ease and security.
+- **Clerk Auth**: Streamlining authentication with secure and customizable authentication solutions.
+- **Shadcn UI**: A UI library for React.js, providing elegant and customizable components for building sleek user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for building responsive and customizable designs with ease.
 
 ## Getting Started
 
-First, run the development server:
+To get started with StreamGaze, follow these steps:
+
+1. Clone the repository:
 
 ```bash
+git clone <repository-url>
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up your environment variables.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```
+npm run dev
+# or
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Open your browser and navigate to http://localhost:3000 to start exploring StreamGaze.
 
-## Learn More
+# Feedback
+We value your feedback! If you have any questions, suggestions, or concerns, please feel free to reach out to us.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy streaming!
