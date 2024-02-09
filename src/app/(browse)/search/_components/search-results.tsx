@@ -11,6 +11,8 @@ type SearchResultsProps = {
 
 export const SearchResults = async ({ term }: SearchResultsProps) => {
   const results = await getSearch(term);
+  console.log({results});
+  
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">
