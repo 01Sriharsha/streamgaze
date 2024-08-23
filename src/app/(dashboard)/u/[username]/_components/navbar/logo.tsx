@@ -26,7 +26,7 @@ export const Logo = () => {
           width={30}
           className="object-cover bg-white rounded-full my-4"
         />
-        <p className="hidden md:block">Twitch</p>
+        <p className="hidden md:block">Streamgaze</p>
       </div>
     </Link>
   );
